@@ -8,7 +8,7 @@ export const orders: TOrder[] = [
     customer: {
       name: "John Doe",
       email: "johndoe@example.com",
-      phone: "+1-555-1234",
+      phone: "+380501234567",
     },
     totalAmount: 99.99,
     items: [
@@ -23,7 +23,7 @@ export const orders: TOrder[] = [
     customer: {
       name: "Jane Smith",
       email: "janesmith@example.com",
-      phone: "+1-555-5678",
+      phone: "+380505567890",
     },
     totalAmount: 59.99,
     items: [{ itemId: 103, name: "Smartphone", quantity: 1, price: 59.99 }],
@@ -35,7 +35,7 @@ export const orders: TOrder[] = [
     customer: {
       name: "Alice Brown",
       email: "alicebrown@example.com",
-      phone: "+1-555-8765",
+      phone: "+380506876543",
     },
     totalAmount: 249.99,
     items: [{ itemId: 104, name: "Tablet", quantity: 1, price: 249.99 }],
@@ -47,7 +47,7 @@ export const orders: TOrder[] = [
     customer: {
       name: "Bob Johnson",
       email: "bobjohnson@example.com",
-      phone: "+1-555-9876",
+      phone: "+380507987654",
     },
     totalAmount: 79.99,
     items: [{ itemId: 105, name: "Headphones", quantity: 1, price: 79.99 }],
@@ -59,7 +59,7 @@ export const orders: TOrder[] = [
     customer: {
       name: "David Clark",
       email: "davidclark@example.com",
-      phone: "+1-555-4321",
+      phone: "+380508432198",
     },
     totalAmount: 349.99,
     items: [{ itemId: 106, name: "Smartwatch", quantity: 1, price: 349.99 }],
@@ -71,7 +71,7 @@ export const orders: TOrder[] = [
     customer: {
       name: "Eve White",
       email: "evewhite@example.com",
-      phone: "+1-555-8765",
+      phone: "+380509876543",
     },
     totalAmount: 199.99,
     items: [{ itemId: 107, name: "Speaker", quantity: 2, price: 99.99 }],
@@ -83,7 +83,7 @@ export const orders: TOrder[] = [
     customer: {
       name: "Frank Harris",
       email: "frankharris@example.com",
-      phone: "+1-555-1122",
+      phone: "+380501112233",
     },
     totalAmount: 129.99,
     items: [
@@ -98,7 +98,7 @@ export const orders: TOrder[] = [
     customer: {
       name: "Grace Lee",
       email: "gracelee@example.com",
-      phone: "+1-555-2211",
+      phone: "+380502211334",
     },
     totalAmount: 89.99,
     items: [
@@ -112,7 +112,7 @@ export const orders: TOrder[] = [
     customer: {
       name: "Henry King",
       email: "henryking@example.com",
-      phone: "+1-555-4433",
+      phone: "+380503443233",
     },
     totalAmount: 159.99,
     items: [
@@ -127,7 +127,7 @@ export const orders: TOrder[] = [
     customer: {
       name: "Ivy Davis",
       email: "ivydavis@example.com",
-      phone: "+1-555-3344",
+      phone: "+380504334455",
     },
     totalAmount: 449.99,
     items: [
@@ -144,9 +144,10 @@ export const orders: TOrder[] = [
     customer: {
       name: "Jack Moore",
       email: "jackmoore@example.com",
-      phone: "+1-555-5566",
+      phone: "+380505556677",
     },
     totalAmount: 59.99,
     items: [{ itemId: 117, name: "Camera Lens", quantity: 1, price: 59.99 }],
   },
 ];
+

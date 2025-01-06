@@ -7,7 +7,9 @@ import {
   TextField,
   Button,
 } from "@mui/material";
+import { Formik, Form, Field } from "formik";
 import { TOrder } from "../types/order";
+import { itemSchema } from "../schemas";
 
 interface OrderDialogProps {
   open: boolean;
@@ -22,95 +24,104 @@ const OrderDialog: React.FC<OrderDialogProps> = ({
   onSave,
   orderData,
 }) => {
-  const [formData, setFormData] = React.useState<TOrder>(
-    orderData || {
-      orderId: 0,
-      createdAt: new Date().toISOString(),
-      status: "Pending",
-      customer: { name: "", email: "", phone: "" },
-      totalAmount: 0,
-      items: [],
-    }
-  );
-
-  React.useEffect(() => {
-    setFormData(
-      orderData || {
-        orderId: 0,
-        createdAt: new Date().toISOString(),
-        status: "Pending",
-        customer: { name: "", email: "", phone: "" },
-        totalAmount: 0,
-        items: [],
-      }
-    );
-  }, [orderData]);
-
-  const handleChange = <K extends keyof TOrder>(field: K, value: TOrder[K]) => {
-    setFormData((prev) => ({
-      ...prev,
-      [field]: value,
-    }));
+  const initialValues: TOrder = orderData || {
+    orderId: 0,
+    createdAt: new Date().toISOString(),
+    status: "Pending",
+    customer: { name: "", email: "", phone: "" },
+    totalAmount: 0,
+    items: [],
   };
 
-  const handleCustomerChange = <K extends keyof TOrder["customer"]>(
-    field: K,
-    value: TOrder["customer"][K]
-  ) => {
-    setFormData((prev) => ({
-      ...prev,
-      customer: { ...prev.customer, [field]: value },
-    }));
-  };
 
-  const handleSave = () => {
-    onSave(formData);
+  const handleSubmit = (values: TOrder) => {
+    onSave(values);
   };
 
   return (
     <Dialog open={open} onClose={onClose} maxWidth="sm" fullWidth>
       <DialogTitle>{orderData ? "Edit Order" : "Add Order"}</DialogTitle>
-      <DialogContent>
-        <TextField
-          margin="normal"
-          fullWidth
-          label="Customer Email"
-          value={formData.customer.email}
-          onChange={(e) => handleCustomerChange("email", e.target.value)}
-        />
-        <TextField
-          margin="normal"
-          fullWidth
-          label="Customer Name"
-          value={formData.customer.name}
-          onChange={(e) => handleCustomerChange("name", e.target.value)}
-        />
-        <TextField
-          margin="normal"
-          fullWidth
-          label="Customer Phone"
-          value={formData.customer.phone}
-          onChange={(e) => handleCustomerChange("phone", e.target.value)}
-        />
-        <TextField
-          margin="normal"
-          fullWidth
-          label="Total Amount"
-          type="number"
-          value={formData.totalAmount}
-          onChange={(e) =>
-            handleChange("totalAmount", parseFloat(e.target.value) || 0)
-          }
-        />
-      </DialogContent>
-      <DialogActions>
-        <Button onClick={onClose} color="secondary">
-          Cancel
-        </Button>
-        <Button onClick={handleSave} variant="contained" color="primary">
-          Save
-        </Button>
-      </DialogActions>
+      <Formik
+        initialValues={initialValues}
+        validationSchema={itemSchema}
+        onSubmit={handleSubmit}
+      >
+        {({ handleChange, values, touched, errors }) => (
+          <Form>
+            <DialogContent>
+              <Field
+                as={TextField}
+                name="customer.email"
+                margin="normal"
+                fullWidth
+                label="Customer Email"
+                value={values.customer.email}
+                onChange={handleChange}
+                error={touched.customer?.email && !!errors.customer?.email}
+                helperText={
+                  touched.customer?.email && errors.customer?.email
+                    ? errors.customer?.email
+                    : ""
+                }
+              />
+              <Field
+                as={TextField}
+                name="customer.name"
+                margin="normal"
+                fullWidth
+                label="Customer Name"
+                value={values.customer.name}
+                onChange={handleChange}
+                error={touched.customer?.name && !!errors.customer?.name}
+                helperText={
+                  touched.customer?.name && errors.customer?.name
+                    ? errors.customer?.name
+                    : ""
+                }
+              />
+              <Field
+                as={TextField}
+                name="customer.phone"
+                margin="normal"
+                fullWidth
+                label="Customer Phone"
+                value={values.customer.phone}
+                onChange={handleChange}
+                error={touched.customer?.phone && !!errors.customer?.phone}
+                helperText={
+                  touched.customer?.phone && errors.customer?.phone
+                    ? errors.customer?.phone
+                    : ""
+                }
+              />
+              <Field
+                as={TextField}
+                name="totalAmount"
+                margin="normal"
+                fullWidth
+                label="Total Amount"
+                type="number"
+                value={values.totalAmount}
+                onChange={handleChange}
+                error={touched.totalAmount && !!errors.totalAmount}
+                helperText={
+                  touched.totalAmount && errors.totalAmount
+                    ? errors.totalAmount
+                    : ""
+                }
+              />
+            </DialogContent>
+            <DialogActions>
+              <Button onClick={onClose} color="secondary">
+                Cancel
+              </Button>
+              <Button type="submit" variant="contained" color="primary">
+                Save
+              </Button>
+            </DialogActions>
+          </Form>
+        )}
+      </Formik>
     </Dialog>
   );
 };
