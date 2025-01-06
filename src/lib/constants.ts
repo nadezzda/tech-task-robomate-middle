@@ -1,26 +1,6 @@
-interface Customer {
-  name: string;
-  email: string;
-  phone: string;
-}
+import { TOrder } from "../types/order";
 
-interface OrderItem {
-  itemId: number;
-  name: string;
-  quantity: number;
-  price: number;
-}
-
-interface Order {
-  orderId: number;
-  createdAt: string;
-  status: "Pending" | "Shipped" | "Delivered" | "Cancelled";
-  customer: Customer;
-  totalAmount: number;
-  items: OrderItem[];
-}
-
-export const orders: Order[] = [
+export const orders: TOrder[] = [
   {
     orderId: 1,
     createdAt: "2025-01-01T08:00:00Z",
