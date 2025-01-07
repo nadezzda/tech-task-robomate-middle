@@ -3,5 +3,17 @@
   "references": [
     { "path": "./tsconfig.app.json" },
     { "path": "./tsconfig.node.json" }
-  ]
+  ],
+  "compilerOptions": {
+    "types": [
+      "vite/client",
+      "jest",
+      "react",
+      "yup",
+      "node",
+      "@testing-library/jest-dom"
+    ],
+    "esModuleInterop": true,
+    "jsx": "react-jsx"
+  }
 }

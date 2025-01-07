@@ -33,7 +33,6 @@ const OrderDialog: React.FC<OrderDialogProps> = ({
     items: [],
   };
 
-
   const handleSubmit = (values: TOrder) => {
     onSave(values);
   };
@@ -112,8 +111,7 @@ const OrderDialog: React.FC<OrderDialogProps> = ({
               />
             </DialogContent>
             <DialogActions>
-              <Button onClick={onClose} color="error"             variant="outlined"
-              >
+              <Button onClick={onClose} color="error" variant="outlined">
                 Cancel
               </Button>
               <Button type="submit" variant="contained" color="primary">
