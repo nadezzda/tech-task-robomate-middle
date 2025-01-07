@@ -7,9 +7,11 @@ import {
 } from "react-router-dom";
 import LoginPage from "./pages/login/login";
 import ItemsPage from "./pages/items/items";
+import { useSelector } from "react-redux";
+import { RootState } from "./features/store";
 
 const App: React.FC = () => {
-  const isLoggedIn = true;
+  const { isLoggedIn } = useSelector((state: RootState) => state.user);
 
   return (
     <Router>

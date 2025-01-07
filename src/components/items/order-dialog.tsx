@@ -8,8 +8,8 @@ import {
   Button,
 } from "@mui/material";
 import { Formik, Form, Field } from "formik";
-import { TOrder } from "../types/order";
-import { itemSchema } from "../schemas";
+import { TOrder } from "../../types/order";
+import { itemSchema } from "../../schemas";
 
 interface OrderDialogProps {
   open: boolean;
@@ -112,7 +112,8 @@ const OrderDialog: React.FC<OrderDialogProps> = ({
               />
             </DialogContent>
             <DialogActions>
-              <Button onClick={onClose} color="secondary">
+              <Button onClick={onClose} color="error"             variant="outlined"
+              >
                 Cancel
               </Button>
               <Button type="submit" variant="contained" color="primary">
