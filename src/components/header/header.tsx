@@ -4,9 +4,9 @@ import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
 import { useDispatch } from "react-redux";
-import { logout } from "../features/authSlice";
 import { useNavigate } from "react-router-dom";
 import React from "react";
+import { logout } from "../../features/authSlice";
 
 const Header = () => {
   const dispatch = useDispatch();

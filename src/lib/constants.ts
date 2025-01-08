@@ -64,90 +64,46 @@ export const orders: TOrder[] = [
     totalAmount: 349.99,
     items: [{ itemId: 106, name: "Smartwatch", quantity: 1, price: 349.99 }],
   },
+];
+
+interface FormFieldConfig {
+  name: string;
+  label: string;
+  type: "email" | "text" | "tel" | "number" | "password";
+}
+
+export const itemFormFields: FormFieldConfig[] = [
   {
-    orderId: 6,
-    createdAt: "2025-01-06T13:00:00Z",
-    status: "Shipped",
-    customer: {
-      name: "Eve White",
-      email: "evewhite@example.com",
-      phone: "+380509876543",
-    },
-    totalAmount: 199.99,
-    items: [{ itemId: 107, name: "Speaker", quantity: 2, price: 99.99 }],
+    name: "customer.email",
+    label: "Customer Email",
+    type: "email",
   },
   {
-    orderId: 7,
-    createdAt: "2025-01-07T14:30:00Z",
-    status: "Delivered",
-    customer: {
-      name: "Frank Harris",
-      email: "frankharris@example.com",
-      phone: "+380501112233",
-    },
-    totalAmount: 129.99,
-    items: [
-      { itemId: 108, name: "Keyboard", quantity: 1, price: 49.99 },
-      { itemId: 109, name: "Mousepad", quantity: 1, price: 19.99 },
-    ],
+    name: "customer.name",
+    label: "Customer Name",
+    type: "text",
   },
   {
-    orderId: 8,
-    createdAt: "2025-01-08T15:00:00Z",
-    status: "Pending",
-    customer: {
-      name: "Grace Lee",
-      email: "gracelee@example.com",
-      phone: "+380502211334",
-    },
-    totalAmount: 89.99,
-    items: [
-      { itemId: 110, name: "Bluetooth Headphones", quantity: 1, price: 89.99 },
-    ],
+    name: "customer.phone",
+    label: "Customer Phone",
+    type: "tel",
   },
   {
-    orderId: 9,
-    createdAt: "2025-01-09T16:00:00Z",
-    status: "Shipped",
-    customer: {
-      name: "Henry King",
-      email: "henryking@example.com",
-      phone: "+380503443233",
-    },
-    totalAmount: 159.99,
-    items: [
-      { itemId: 111, name: "Smartphone Case", quantity: 2, price: 29.99 },
-      { itemId: 112, name: "Screen Protector", quantity: 2, price: 10.99 },
-    ],
-  },
-  {
-    orderId: 10,
-    createdAt: "2025-01-10T17:30:00Z",
-    status: "Delivered",
-    customer: {
-      name: "Ivy Davis",
-      email: "ivydavis@example.com",
-      phone: "+380504334455",
-    },
-    totalAmount: 449.99,
-    items: [
-      { itemId: 113, name: "Laptop Bag", quantity: 1, price: 59.99 },
-      { itemId: 114, name: "Laptop Stand", quantity: 1, price: 49.99 },
-      { itemId: 115, name: "Wireless Charger", quantity: 1, price: 39.99 },
-      { itemId: 116, name: "USB-C Cable", quantity: 2, price: 10.99 },
-    ],
-  },
-  {
-    orderId: 11,
-    createdAt: "2025-01-11T18:00:00Z",
-    status: "Cancelled",
-    customer: {
-      name: "Jack Moore",
-      email: "jackmoore@example.com",
-      phone: "+380505556677",
-    },
-    totalAmount: 59.99,
-    items: [{ itemId: 117, name: "Camera Lens", quantity: 1, price: 59.99 }],
+    name: "totalAmount",
+    label: "Total Amount",
+    type: "number",
   },
 ];
 
+export const loginFormFields: FormFieldConfig[] = [
+  {
+    name: "email",
+    label: "Email",
+    type: "email",
+  },
+  {
+    name: "password",
+    label: "Password",
+    type: "password",
+  },
+];

@@ -1,18 +1,17 @@
 import * as yup from "yup";
 
 export const authSchema = yup.object({
-  email: yup.string().email("Invalid email address").required("This field is required"),
+  email: yup
+    .string()
+    .email("Invalid email address")
+    .required("This field is required"),
   password: yup
     .string()
     .required("This field is required")
     .min(8, "The password must be at least 8 characters long.")
     .matches(
-      /[A-Z]/,
-      "The password must contain at least one uppercase letter."
-    )
-    .matches(
       /[!@#$%^&*(),.?":{}|<>]/,
-      "The password must contain at least one special character."
+      "The password must contain at least one special character (!@#$%^&*)."
     ),
 });
 
@@ -29,10 +28,10 @@ export const itemSchema = yup.object({
     phone: yup
       .string()
       .required("Phone number is required")
-      .matches(/^\+38\d{10}$/, "Invalid phone number format"),
+      .matches(/^\+38\d{10}$/, "Enter a phone number starting with +380..."),
   }),
   totalAmount: yup
     .number()
     .required("Total amount is required")
-    .min(1, "Total amount must be positive"),
+    .min(1, "Total amount must be greater than 1"),
 });

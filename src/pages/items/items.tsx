@@ -1,41 +1,28 @@
-import React, { Fragment, useState } from "react";
+import React, { Fragment } from "react";
 import { Box, Typography } from "@mui/material";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { RootState } from "../../features/store";
-import { addOrder, updateOrder } from "../../features/itemsSlice";
-import OrderDialog from "../../components/items/order-dialog";
+import Header from "../../components/header/header";
+import AddOrderButton from "../../components/items-page/add-order-button";
+import OrderTable from "../../components/items-page/items-table";
+import OrderDialog from "../../components/items-page/order-dialog";
+import useOrderDialog from "../../hooks/useOrderDialog";
+import useOrders from "../../hooks/useOrders";
 import { TOrder } from "../../types/order";
-import Header from "../../components/header";
-import AddOrderButton from "../../components/items/add-order-button";
-import OrderTable from "../../components/items/items-table";
 
 const ItemsPage: React.FC = () => {
   const { items: orders } = useSelector((state: RootState) => state.orders);
-  const dispatch = useDispatch();
-  const [dialogOpen, setDialogOpen] = useState(false);
-  const [currentOrder, setCurrentOrder] = useState<TOrder | null>(null);
+  const { dialogOpen, currentOrder, openDialog, closeDialog } =
+    useOrderDialog();
+  const { saveOrder } = useOrders();
 
-  const handleAddOrder = () => {
-    setCurrentOrder(null);
-    setDialogOpen(true);
-  };
+  const handleAddOrder = () => openDialog();
 
-  const handleEditOrder = (order: TOrder) => {
-    setCurrentOrder(order);
-    setDialogOpen(true);
-  };
-
-  const handleCloseDialog = () => {
-    setDialogOpen(false);
-  };
+  const handleEditOrder = (order: TOrder) => openDialog(order);
 
   const handleSaveOrder = (order: TOrder) => {
-    if (currentOrder?.orderId) {
-      dispatch(updateOrder({ orderId: order.orderId, updatedData: order }));
-    } else {
-      dispatch(addOrder(order));
-    }
-    setDialogOpen(false);
+    saveOrder(order, currentOrder);
+    closeDialog();
   };
 
   return (
@@ -49,7 +36,7 @@ const ItemsPage: React.FC = () => {
         <OrderTable orders={orders} onEdit={handleEditOrder} />
         <OrderDialog
           open={dialogOpen}
-          onClose={handleCloseDialog}
+          onClose={closeDialog}
           onSave={handleSaveOrder}
           orderData={currentOrder}
         />

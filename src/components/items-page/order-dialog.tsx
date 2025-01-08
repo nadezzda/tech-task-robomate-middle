@@ -4,12 +4,14 @@ import {
   DialogTitle,
   DialogContent,
   DialogActions,
-  TextField,
   Button,
+  Grid,
 } from "@mui/material";
-import { Formik, Form, Field } from "formik";
+import { Formik, Form } from "formik";
 import { TOrder } from "../../types/order";
 import { itemSchema } from "../../schemas";
+import FormField from "../form-field";
+import { itemFormFields } from "../../lib/constants";
 
 interface OrderDialogProps {
   open: boolean;
@@ -45,81 +47,29 @@ const OrderDialog: React.FC<OrderDialogProps> = ({
         validationSchema={itemSchema}
         onSubmit={handleSubmit}
       >
-        {({ handleChange, values, touched, errors }) => (
-          <Form>
-            <DialogContent>
-              <Field
-                as={TextField}
-                name="customer.email"
-                margin="normal"
-                fullWidth
-                label="Customer Email"
-                value={values.customer.email}
-                onChange={handleChange}
-                error={touched.customer?.email && !!errors.customer?.email}
-                helperText={
-                  touched.customer?.email && errors.customer?.email
-                    ? errors.customer?.email
-                    : ""
-                }
-              />
-              <Field
-                as={TextField}
-                name="customer.name"
-                margin="normal"
-                fullWidth
-                label="Customer Name"
-                value={values.customer.name}
-                onChange={handleChange}
-                error={touched.customer?.name && !!errors.customer?.name}
-                helperText={
-                  touched.customer?.name && errors.customer?.name
-                    ? errors.customer?.name
-                    : ""
-                }
-              />
-              <Field
-                as={TextField}
-                name="customer.phone"
-                margin="normal"
-                fullWidth
-                label="Customer Phone"
-                value={values.customer.phone}
-                onChange={handleChange}
-                error={touched.customer?.phone && !!errors.customer?.phone}
-                helperText={
-                  touched.customer?.phone && errors.customer?.phone
-                    ? errors.customer?.phone
-                    : ""
-                }
-              />
-              <Field
-                as={TextField}
-                name="totalAmount"
-                margin="normal"
-                fullWidth
-                label="Total Amount"
-                type="number"
-                value={values.totalAmount}
-                onChange={handleChange}
-                error={touched.totalAmount && !!errors.totalAmount}
-                helperText={
-                  touched.totalAmount && errors.totalAmount
-                    ? errors.totalAmount
-                    : ""
-                }
-              />
-            </DialogContent>
-            <DialogActions>
-              <Button onClick={onClose} color="error" variant="outlined">
-                Cancel
-              </Button>
-              <Button type="submit" variant="contained" color="primary">
-                Save
-              </Button>
-            </DialogActions>
-          </Form>
-        )}
+        <Form>
+          <DialogContent>
+            <Grid container spacing={3}>
+              {itemFormFields.map((field) => (
+                <Grid item xs={12} key={field.name}>
+                  <FormField
+                    label={field.label}
+                    name={field.name}
+                    type={field.type}
+                  />
+                </Grid>
+              ))}
+            </Grid>
+          </DialogContent>
+          <DialogActions>
+            <Button onClick={onClose} color="error" variant="outlined">
+              Cancel
+            </Button>
+            <Button type="submit" variant="contained" color="primary">
+              Save
+            </Button>
+          </DialogActions>
+        </Form>
       </Formik>
     </Dialog>
   );

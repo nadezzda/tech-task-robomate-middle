@@ -9,6 +9,7 @@ import {
 } from "@mui/material";
 import { TOrder } from "../../types/order";
 import EditIcon from "@mui/icons-material/Edit";
+import { getStatusChip } from "../../lib/getStatusChip";
 
 interface OrderTableProps {
   orders: TOrder[];
@@ -16,6 +17,7 @@ interface OrderTableProps {
 }
 
 const OrderTable: React.FC<OrderTableProps> = ({ orders, onEdit }) => {
+
   return (
     <Table>
       <TableHead>
@@ -36,7 +38,7 @@ const OrderTable: React.FC<OrderTableProps> = ({ orders, onEdit }) => {
               <TableCell>
                 {new Date(order.createdAt).toLocaleString()}
               </TableCell>
-              <TableCell>{order.status}</TableCell>
+              <TableCell>{getStatusChip(order.status)}</TableCell>
               <TableCell>{order.customer.name}</TableCell>
               <TableCell>${order.totalAmount.toFixed(2)}</TableCell>
               <TableCell>
