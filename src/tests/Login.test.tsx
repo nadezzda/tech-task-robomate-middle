@@ -4,7 +4,7 @@ import { render, screen, fireEvent, act } from "@testing-library/react";
 import { Provider } from "react-redux";
 import configureStore from "redux-mock-store";
 import { MemoryRouter } from "react-router-dom";
-import LoginForm from "../components/login-form";
+import LoginForm from "../components/login-page/login-form";
 import { login } from "../features/authSlice";
 
 jest.mock("react-redux", () => ({

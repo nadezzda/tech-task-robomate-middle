@@ -5,7 +5,7 @@ import { Provider } from "react-redux";
 import configureStore from "redux-mock-store";
 import { MemoryRouter } from "react-router-dom";
 import ItemsPage from "../pages/items/items";
-import OrderTable from "../components/items/items-table";
+import OrderTable from "../components/items-page/items-table";
 import { addOrder } from "../features/itemsSlice";
 import "@testing-library/jest-dom";
 import { TOrder } from "../types/order";
