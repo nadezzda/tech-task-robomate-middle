@@ -1,11 +1,11 @@
 module.exports = {
-    verbose: true, // Показывает подробный вывод тестов
-    roots: ['<rootDir>/src/tests'], // Тесты будут искаться в каталоге tests
+    verbose: true,
+    roots: ['<rootDir>/src/tests'],
     collectCoverageFrom: [
-      'src/**/*.{js,jsx,ts,tsx}', // Собирать покрытие для всех файлов в src
-      '!src/**/*.d.ts', // Исключить декларации типов
+      'src/**/*.{js,jsx,ts,tsx}',
+      '!src/**/*.d.ts',
     ],
-    testEnvironment: 'jsdom', // Среда тестирования для React
+    testEnvironment: 'jsdom',
     transform: {
       '^.+\\.(ts|tsx)?$': [
         'ts-jest',
@@ -16,8 +16,8 @@ module.exports = {
     },
     
     moduleNameMapper: {
-      '^.+\\.module\\.(css|sass|scss)$': 'identity-obj-proxy', // Мок для CSS-модулей
+      '^.+\\.module\\.(css|sass|scss)$': 'identity-obj-proxy',
     },
-    setupFilesAfterEnv: ['<rootDir>/src/tests/setupTests.ts'], // Настройки перед тестами
+    setupFilesAfterEnv: ['<rootDir>/src/tests/setupTests.ts'],
   };
   
